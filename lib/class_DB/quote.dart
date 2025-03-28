@@ -33,6 +33,7 @@ class Quote{
     );
   }
 
+  //Permet d'insérer un jeu de données de citation dans la BD à son initialisation
   static Future<void> insertAllQuotes() async {
     // Liste des citations à insérer à l'initialisation
     List<Quote> quotes = [
@@ -59,5 +60,32 @@ class Quote{
     }
   }
 
+  //Permet de chercher une citation dans la BD grâce à son ID
+  //Le ? permet de rendre le rendu nullable pour une future méthode
+  static Future<Quote?> readOne(int id) async {
+    final Database db = await openDatabase(
+      join(await getDatabasesPath(), 'maxpaynedle.db'),
+    );
+
+    //Permet de faire une requête SELECT SQL avec une paramètre (id)
+    final List<Map<String, dynamic>> maps = await db.query(
+      'quote',
+      where: 'id = ?',
+      whereArgs: [id],
+    );
+
+    //Vérifie si l'id avait bien un résultat associé
+    if (maps.isNotEmpty) {
+      // Prend le premier (et le seul mais la méthode db.query retourne une liste de map)
+      // résultat renvoyé par la requête et le convertit en objet
+      return Quote(
+        id: maps.first['id'],
+        quote: maps.first['quote'],
+        character: maps.first['character'],
+      );
+    } else {
+      return null;
+    }
+  }
 
 }

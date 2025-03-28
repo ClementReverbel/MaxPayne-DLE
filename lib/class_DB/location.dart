@@ -33,6 +33,7 @@ class Location{
     );
   }
 
+  //Permet d'insérer un jeu de données dans la base de données à son initialisation
   static Future<void> insertAllLocation() async {
     // Liste des locations/map à insérer à l'initialisation
     List<Location> locations = [
@@ -48,6 +49,34 @@ class Location{
     // Boucle dans la liste pour les rajouter à chaque fois
     for (var location in locations) {
       await insertMap(location);
+    }
+  }
+
+  //Permet de rechercher une carte du jeu grâce à son id dans la BD
+  //Le ? permet de rendre le rendu nullable pour une future méthode
+  static Future<Location?> readOne(int id) async {
+    final Database db = await openDatabase(
+      join(await getDatabasesPath(), 'maxpaynedle.db'),
+    );
+
+    //Permet de faire une requête SELECT SQL avec une paramètre (id)
+    final List<Map<String, dynamic>> maps = await db.query(
+      'location',
+      where: 'id = ?',
+      whereArgs: [id],
+    );
+
+    //Vérifie si l'id avait bien un résultat associé
+    if (maps.isNotEmpty) {
+      // Prend le premier (et le seul mais la méthode db.query retourne une liste de map)
+      // résultat renvoyé par la requête et le convertit en objet
+      return Location(
+        id: maps.first['id'],
+        path: maps.first['path'],
+        place: maps.first['place'],
+      );
+    } else {
+      return null;
     }
   }
 }

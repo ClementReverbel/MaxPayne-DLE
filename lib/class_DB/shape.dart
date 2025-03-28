@@ -35,6 +35,7 @@ class Shape{
     );
   }
 
+  //Permet de créer un jeu de données à la création de la BD
   static Future<void> insertAllShape() async {
     // Liste des locations/map à insérer à l'initialisation
     List<Shape> shapes = [
@@ -51,6 +52,35 @@ class Shape{
     // Boucle dans la liste pour les rajouter à chaque fois
     for (var shape in shapes) {
       await insertMap(shape);
+    }
+  }
+
+  // Fonction permettant de trouver une silhouette en fonction de son id
+  //Le ? permet de rendre le rendu nullable pour une future méthode
+  static Future<Shape?> readOne(int id) async {
+    final Database db = await openDatabase(
+      join(await getDatabasesPath(), 'maxpaynedle.db'),
+    );
+
+    //Permet de faire une requête SELECT SQL avec une paramètre (id)
+    final List<Map<String, dynamic>> maps = await db.query(
+      'shape',
+      where: 'id = ?',
+      whereArgs: [id],
+    );
+
+    //Vérifie si l'id avait bien un résultat associé
+    if (maps.isNotEmpty) {
+      // Prend le premier (et le seul mais la méthode db.query retourne une liste de map)
+      // résultat renvoyé par la requête et le convertit en objet
+      return Shape(
+        id: maps.first['id'],
+        path_shape: maps.first['path_shape'],
+        path_full_image: maps.first['path_full_image'],
+        character: maps.first['character']
+      );
+    } else {
+      return null;
     }
   }
 }
