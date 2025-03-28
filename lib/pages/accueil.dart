@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:maxpaynedle/elements/boutonsMenu.dart';
 import 'package:maxpaynedle/pages/citation.dart';
 import 'package:maxpaynedle/pages/map.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class acceuil extends StatelessWidget {
   const acceuil({super.key});
@@ -11,7 +12,7 @@ class acceuil extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Accueil"),
+        title: Text(AppLocalizations.of(context)!.titre_accueil),
         actions: boutonsMenu.build(context),
       ),
       body: Center(

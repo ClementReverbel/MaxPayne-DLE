@@ -1,0 +1,22 @@
+{
+  "titre_accueil": "Accueil",
+  "@Accueil" :{
+  "description":"Titre de la page d'accueil"
+  },
+  "infos_accueil" : "Des informations",
+  "@Infos" :{
+    "description":"Informations générale sur le jeu Max Payne"
+    },
+  "citation": "Citation",
+  "@citation" :{
+    "description":"General informations about the game Max Payne"
+  },
+  "carte" : "Carte",
+  "@carte" :{
+    "description":"General informations about the game Max Payne"
+  },
+  "silhouette" : "Silhouette",
+  "@silhouette" :{
+    "description":"General informations about the game Max Payne"
+  }
+}
