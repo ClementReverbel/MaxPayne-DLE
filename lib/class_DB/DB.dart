@@ -2,6 +2,9 @@ import 'dart:async';
 import 'package:flutter/widgets.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
+import 'quote.dart';
+import 'location.dart';
+import 'shape.dart';
 
 class DB {
   //Permet de faire une promesse de valeur à database le temps de son initialisation
@@ -19,12 +22,15 @@ class DB {
         await db.execute(
           'CREATE TABLE quote(id INTEGER PRIMARY KEY, character TEXT, quote TEXT)',
         );
+        Quote.insertAllQuotes();
         await db.execute(
           'CREATE TABLE location(id INTEGER PRIMARY KEY, path TEXT, place TEXT)',
         );
+        Location.insertAllLocation();
         await db.execute(
           'CREATE TABLE shape(id INTEGER PRIMARY KEY, path_shape TEXT, path_full_image TEXT, character TEXT)',
         );
+        Shape.insertAllShape();
       },
       version: 1,
     );

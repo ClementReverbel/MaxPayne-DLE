@@ -29,12 +29,12 @@ class Quote{
     await db.insert(
       'quote',
       quote.toMap(), //Transforme l'objet Quote en map pour l'insertion
-      conflictAlgorithm: ConflictAlgorithm.replace, //Permet d'auto incrémenter l'id
+      conflictAlgorithm: ConflictAlgorithm.replace, //Permet d'éviter les conflits SQL
     );
   }
 
   static Future<void> insertAllQuotes() async {
-    // List of quotes to insert
+    // Liste des citations à insérer à l'initialisation
     List<Quote> quotes = [
       Quote(id: 1, character: "Max Payne", quote: "I don't know about angels, but it's fear that gives men wings."),
       Quote(id: 2, character: "Vlad Lem", quote: "Nothing wrong with a little self-improvement."),
@@ -53,9 +53,9 @@ class Quote{
       Quote(id: 15, character: "Raul Passos", quote: "Stay sharp, Max. They're always one step ahead."),
     ];
 
-    // Loop through the list of quotes and insert each one into the database
+    // Boucle dans la liste pour les rajouter à chaque fois
     for (var quote in quotes) {
-      await insertQuote(quote);  // Call insertQuote for each quote in the list
+      await insertQuote(quote);
     }
   }
 
