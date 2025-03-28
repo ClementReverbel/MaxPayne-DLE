@@ -19,6 +19,7 @@ class DB {
       join(await getDatabasesPath(), 'maxpaynedle.db'),
       //Si c'est la première éxecution alors on crée les tables de la BD
       onCreate: (db, version) async {
+        debugPrint("Création de la base de données...");
         await db.execute(
           'CREATE TABLE quote(id INTEGER PRIMARY KEY, character TEXT, quote TEXT)',
         );
@@ -31,6 +32,7 @@ class DB {
           'CREATE TABLE shape(id INTEGER PRIMARY KEY, path_shape TEXT, path_full_image TEXT, character TEXT)',
         );
         await Shape.insertAllShape();
+        debugPrint("Base de données créée");
       },
       version: 1,
     );
