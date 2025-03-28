@@ -11,10 +11,7 @@ class acceuil extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(AppLocalizations.of(context)!.titre_accueil),
-        actions: boutonsMenu.build(context),
-      ),
+      appBar: const boutonsMenu(),
       body: Center(
         child: Text("Les infos en question", style: TextStyle(fontSize: 40)),
       ),

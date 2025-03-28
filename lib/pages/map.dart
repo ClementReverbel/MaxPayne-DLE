@@ -42,24 +42,16 @@ class _findMapState extends State<findMap> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          leading: IconButton(
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              icon: Icon(Icons.arrow_back)),
-          actions: boutonsMenu.build(context),
-        ),
         body: Center(
             child:
-                Column(
-                  children:
-                  [Text("Map", style: TextStyle(fontSize: 40)),
-                    //! permet de vérifier si location n'est pas nul
-                    Image.asset(_location!.path)
-                  ]
-                )
+            Column(
+                children:
+                [Text("Map", style: TextStyle(fontSize: 40)),
+                  //! permet de vérifier si location n'est pas nul
+                  Image.asset(_location!.path)
+                ]
+            )
         ),
-    );
+        appBar: const boutonsMenu());
   }
 }
