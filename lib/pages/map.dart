@@ -11,13 +11,6 @@ class findMap extends StatelessWidget {
         body: Center(
             child:
             Text("Map", style: TextStyle(fontSize: 40))),
-        appBar: AppBar(
-            title: Text("Map"),
-            leading: IconButton(
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-                icon: Icon(Icons.arrow_back)),
-        actions: boutonsMenu.build(context),));
+        appBar: const boutonsMenu());
   }
 }
