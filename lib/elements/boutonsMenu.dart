@@ -5,6 +5,8 @@ import '../pages/citation.dart';
 import '../pages/map.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
+import '../pages/silhouette.dart';
+
 enum burger { theme, apropos }
 
 class boutonsMenu extends StatefulWidget implements PreferredSizeWidget {
@@ -56,7 +58,7 @@ class _boutonsMenuState extends State<boutonsMenu> {
           onPressed: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => citation()),
+              MaterialPageRoute(builder: (context) => silhouette()),
             );
           },
           icon: const Icon(Icons.account_box),
