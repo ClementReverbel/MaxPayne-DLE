@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:maxpaynedle/class_DB/location.dart';
 import 'package:maxpaynedle/elements/boutonsMenu.dart';
+import 'package:maxpaynedle/elements/radioMap.dart';
 
 class findMap extends StatefulWidget {
   const findMap({super.key});
@@ -15,6 +16,7 @@ class findMap extends StatefulWidget {
 class _findMapState extends State<findMap> {
   //Notre carte choisie aléatoirement
   Location? _location;
+
 
   //Exécute notre fonction de récupération de carte aléatoire à l'initialisation
   @override
@@ -48,7 +50,12 @@ class _findMapState extends State<findMap> {
                 children:
                 [Text("Map", style: TextStyle(fontSize: 40)),
                   //! permet de vérifier si location n'est pas null
-                  Image.asset(_location!.path)
+                  Image.asset(_location!.path),
+                  RadioMap(OnChange: (allMaps ) {  },),
+                  TextButton(onPressed: ()=>{
+                    _location?.place
+
+                  }, child: Text("Valider"))
                 ]
             )
         ),
