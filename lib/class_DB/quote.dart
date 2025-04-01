@@ -34,7 +34,7 @@ class Quote{
   }
 
   //Permet d'insérer un jeu de données de citation dans la BD à son initialisation
-  static Future<void> insertAllQuotes() async {
+  static Future<void> insertAllQuotes(db) async {
     // Liste des citations à insérer à l'initialisation
     List<Quote> quotes = [
       Quote(id: 1, character: "Max Payne", quote: "I don't know about angels, but it's fear that gives men wings."),
@@ -56,7 +56,11 @@ class Quote{
 
     // Boucle dans la liste pour les rajouter à chaque fois
     for (var quote in quotes) {
-      await insertQuote(quote);
+      await db.insert(
+        'quote',
+        quote.toMap(), //Transforme l'objet Quote en map pour l'insertion
+        conflictAlgorithm: ConflictAlgorithm.replace, //Permet d'éviter les conflits SQL
+      );
     }
   }
 

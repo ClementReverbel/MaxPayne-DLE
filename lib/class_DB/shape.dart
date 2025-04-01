@@ -36,7 +36,7 @@ class Shape{
   }
 
   //Permet de créer un jeu de données à la création de la BD
-  static Future<void> insertAllShape() async {
+  static Future<void> insertAllShape(db) async {
     // Liste des locations/map à insérer à l'initialisation
     List<Shape> shapes = [
       Shape(id: 1, path_shape: 'assets/shape/Alfred_Woden.jpg', path_full_image:'assets/character/Alfred_Woden.jpg', character:'Alfred Woden'),
@@ -51,7 +51,11 @@ class Shape{
 
     // Boucle dans la liste pour les rajouter à chaque fois
     for (var shape in shapes) {
-      await insertMap(shape);
+      await db.insert(
+        'shape',
+        shape.toMap(), //Transforme l'objet Shape en map pour l'insertion
+        conflictAlgorithm: ConflictAlgorithm.replace,
+      );
     }
   }
 

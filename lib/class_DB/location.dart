@@ -34,10 +34,10 @@ class Location{
   }
 
   //Permet d'insérer un jeu de données dans la base de données à son initialisation
-  static Future<void> insertAllLocation() async {
+  static Future<void> insertAllLocation(db) async {
     // Liste des locations/map à insérer à l'initialisation
     List<Location> locations = [
-      Location(id: 1, path: 'assets/location/55th_ballation_hq.jpg', place:"55th Ballation HQ"),
+      Location(id: 1, path: 'assets/location/55th_battalion_hq.jpg', place:"55th Ballation HQ"),
       Location(id: 2, path: 'assets/location/canal_de_panama.jpg', place:"Canal de Panama"),
       Location(id: 3, path: 'assets/location/departure_lounge.jpg', place:"Departure Lounge"),
       Location(id: 4, path: 'assets/location/favela_heights.jpg', place:"Favela Heights"),
@@ -48,7 +48,11 @@ class Location{
 
     // Boucle dans la liste pour les rajouter à chaque fois
     for (var location in locations) {
-      await insertMap(location);
+      await db.insert(
+        'location',
+        location.toMap(), //Transforme l'objet Location en map pour l'insertion
+        conflictAlgorithm: ConflictAlgorithm.replace,
+      );
     }
   }
 

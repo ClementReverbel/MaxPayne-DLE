@@ -47,7 +47,7 @@ class _findMapState extends State<findMap> {
             Column(
                 children:
                 [Text("Map", style: TextStyle(fontSize: 40)),
-                  //! permet de vérifier si location n'est pas nul
+                  //! permet de vérifier si location n'est pas null
                   Image.asset(_location!.path)
                 ]
             )

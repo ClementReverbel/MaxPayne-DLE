@@ -23,15 +23,20 @@ class DB {
         await db.execute(
           'CREATE TABLE quote(id INTEGER PRIMARY KEY, character TEXT, quote TEXT)',
         );
-        await Quote.insertAllQuotes();
+
         await db.execute(
           'CREATE TABLE location(id INTEGER PRIMARY KEY, path TEXT, place TEXT)',
         );
-        await Location.insertAllLocation();
+
         await db.execute(
           'CREATE TABLE shape(id INTEGER PRIMARY KEY, path_shape TEXT, path_full_image TEXT, character TEXT)',
         );
-        await Shape.insertAllShape();
+
+        debugPrint("Insertion...");
+        await Location.insertAllLocation(db);
+        await Quote.insertAllQuotes(db);
+        await Shape.insertAllShape(db);
+
         debugPrint("Base de données créée");
       },
       version: 1,
