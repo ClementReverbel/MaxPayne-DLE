@@ -5,8 +5,15 @@ import 'package:flutter/material.dart';
 import 'package:maxpaynedle/class_DB/location.dart';
 import 'package:maxpaynedle/elements/boutonsMenu.dart';
 
-
-List<String?> _allLoc = [ "ballation" , "canal", "departure","favela", "palace", "subway", "shoot" ];
+List<String?> _allLoc = [
+  "ballation",
+  "canal",
+  "departure",
+  "favela",
+  "palace",
+  "subway",
+  "shoot",
+];
 
 class findMap extends StatefulWidget {
   const findMap({super.key});
@@ -19,8 +26,6 @@ class _findMapState extends State<findMap> {
   //Notre carte choisie aléatoirement
   Location? _location;
   String _location_choosen = "55th Ballation HQ";
-
-
 
   //Exécute notre fonction de récupération de carte aléatoire à l'initialisation
   @override
@@ -35,7 +40,7 @@ class _findMapState extends State<findMap> {
     //Permet de choisir parmis nos 7 cartes une aléatoire (peut donc être update si plus de map)
     final int maxId = 7;
     //On prend donc un id aléatoire (le +1 est dû à la méthode nextInt() qui ne prend pas la dernière valeur)
-    int randomId = Random().nextInt(maxId)+1;
+    int randomId = Random().nextInt(maxId) + 1;
 
     //Permet de ne pas avoir 2 fois le même objet d'affilé
     do {
@@ -54,14 +59,27 @@ class _findMapState extends State<findMap> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Center(
-            child:
+      body: Center(
+        child: Column(
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Expanded(
+                  flex: 2,
+                  child: Text("Map", style: TextStyle(fontSize: 40), textAlign: TextAlign.center),
+                ),
+                IconButton(onPressed: () =>{}, icon: Icon(Icons.info))
+              ],
+            ),
+            //! permet de vérifier si location n'est pas null
+            Image.asset(_location!.path),
             Column(
-                children:
-                [Text("Map", style: TextStyle(fontSize: 40)),
-                  //! permet de vérifier si location n'est pas null
-                  Image.asset(_location!.path),
-                  Column(
+              children: <Widget>[
+                SizedBox(
+                  height: 300,
+                  child: ListView(
+                    shrinkWrap: true,
                     children: <Widget>[
                       ListTile(
                         title: const Text('55th Ballation HQ'),
@@ -146,26 +164,32 @@ class _findMapState extends State<findMap> {
                             });
                           },
                         ),
-                      )
+                      ),
                     ],
                   ),
-                  TextButton(onPressed: ()=>{
-                    if(_location?.place == _location_choosen){
-                      print("OUI")
-                    } else{
-                      print("NON")
-        }
-
-                  }, child: Text("Valider"))
-                ]
-            )
+                ),
+              ],
+            ),
+            ElevatedButton(
+              onPressed:
+                  () => {
+                    if (_location?.place == _location_choosen)
+                      {print("OUI")}
+                    else
+                      {print("NON")},
+                  },
+              child: Text("Valider"),
+            ),
+          ],
         ),
-        floatingActionButton: FloatingActionButton(
-            onPressed: () {
-              _getRandomLocation();
-            },
-            child: Icon(Icons.refresh)
-        ),
-        appBar: const boutonsMenu());
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          _getRandomLocation();
+        },
+        child: Icon(Icons.refresh),
+      ),
+      appBar: const boutonsMenu(),
+    );
   }
 }
