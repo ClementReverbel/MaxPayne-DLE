@@ -36,6 +36,12 @@ class _findMapState extends State<findMap> {
     final int maxId = 7;
     //On prend donc un id aléatoire (le +1 est dû à la méthode nextInt() qui ne prend pas la dernière valeur)
     int randomId = Random().nextInt(maxId)+1;
+
+    //Permet de ne pas avoir 2 fois le même objet d'affilé
+    do {
+      randomId = Random().nextInt(maxId) + 1;
+    } while (_location != null && randomId == _location!.id);
+
     //On lit l'objet correspondant à l'id
     Location? location = await Location.readOne(randomId);
 
@@ -153,6 +159,12 @@ class _findMapState extends State<findMap> {
                   }, child: Text("Valider"))
                 ]
             )
+        ),
+        floatingActionButton: FloatingActionButton(
+            onPressed: () {
+              _getRandomLocation();
+            },
+            child: Icon(Icons.refresh)
         ),
         appBar: const boutonsMenu());
   }
