@@ -14,9 +14,10 @@ class silhouette extends StatefulWidget {
 }
 
 class _silhouetteState extends State<silhouette> {
-  //Notre citation choisie aléatoirement
+  //Notre silhouette choisie aléatoirement
   Shape? _silhouette;
   bool _shape_mode=true;
+  String _selectedCharacter = "";
 
   //Exécute notre fonction de récupération de carte aléatoire à l'initialisation
   @override
@@ -47,6 +48,7 @@ class _silhouetteState extends State<silhouette> {
     });
   }
 
+  //Permet de connaitre le mode de jeu suivant et de l'afficher dans un texte
   String gamemode(){
     return _shape_mode? "Sans silhouette":"Silhouette";
   }
@@ -68,11 +70,42 @@ class _silhouetteState extends State<silhouette> {
                 Text("Mode de jeu : "+gamemode()),
                 Switch(value: _shape_mode, onChanged: (bool value)=>setState((){
                 _shape_mode = value;})),
-                AutoCompleteCharacter(),
-                SizedBox(height: 100)
+                //Quand l'enfant est modifié alors on change l'état de notre personnage choisi
+                AutoCompleteCharacter(
+                  onCharacterSelected: (String selected){
+                    setState(() {
+                      _selectedCharacter=selected;
+                    });
+                  },
+                ),
+                SizedBox(height: 20),
+                ElevatedButton(
+                  onPressed:
+                      ()  {
+                        String result="";
+                        if(_selectedCharacter==_silhouette!.character){
+                          result="Vous avez gagné ! Le personnage était bien "+_selectedCharacter;
+                        } else {
+                          result="Ce n'est pas le bon personnage. Réessayez !";
+                        }
+                        final snackBar = SnackBar(
+                        content: Text(result),
+                        action: SnackBarAction(
+                          label: 'Undo',
+                          onPressed: () {
+                            // Some code to undo the change.
+                          },
+                        ),
+                      );
+                      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                    },
+                  child: Text("Valider"),
+                ),
             ]
           ),
         ),
+
+
         floatingActionButton: FloatingActionButton(
             onPressed: () {
               _getRandomSilhouette();
@@ -83,18 +116,33 @@ class _silhouetteState extends State<silhouette> {
   }
 }
 
+
+
 //Cette classe permet de créer un textField autocomplétant personnalisé
-class AutoCompleteCharacter extends StatelessWidget {
-  const AutoCompleteCharacter({super.key});
+//Il est crée dans une autre classe pour rentre le code propre et réfactorisé
+class AutoCompleteCharacter extends StatefulWidget {
+  final Function(String) onCharacterSelected;
+
+  //On crée une function à passer en paramètre pour la rétroactiver dans le widget parent
+  const AutoCompleteCharacter({
+    super.key,
+    required this.onCharacterSelected
+  });
+
+  @override
+  State<AutoCompleteCharacter> createState() => _AutoCompleteCharacterState();
 
   //Ici se trouve les items qui peuvent être proposés
   static const List<String> _kOptions = <String>['Alfred Woden',
     'Anthony DeMarco',
     'Max Payne',
-    'Mona Sax'
+    'Mona Sax',
     'Nicole Horne',
     'Raul Passos',
     'Tony DeMarco'];
+}
+
+class _AutoCompleteCharacterState extends State<AutoCompleteCharacter> {
 
   @override
   Widget build(BuildContext context) {
@@ -103,12 +151,13 @@ class AutoCompleteCharacter extends StatelessWidget {
         if (textEditingValue.text == '') {
           return const Iterable<String>.empty();
         }
-        return _kOptions.where((String option) {
+        return AutoCompleteCharacter._kOptions.where((String option) {
           return option.contains(textEditingValue.text);
         });
       },
+      //Ici on renvoi au widget parent le changement d'état
       onSelected: (String selection) {
-        debugPrint('You just selected $selection');
+        widget.onCharacterSelected(selection);
       },
     );
   }
