@@ -33,7 +33,7 @@ class _boutonsMenuState extends State<boutonsMenu> {
               MaterialPageRoute(builder: (context) => citation()),
             );
           },
-          icon: const Icon(Icons.assistant),
+          icon: const Icon(Icons.assistant, color: Colors.indigo),
           label: Text(
             AppLocalizations.of(context)!.citation,
             style: const TextStyle(color: Colors.black),
@@ -47,7 +47,7 @@ class _boutonsMenuState extends State<boutonsMenu> {
               MaterialPageRoute(builder: (context) => findMap()),
             );
           },
-          icon: const Icon(Icons.map),
+          icon: const Icon(Icons.map, color: Colors.indigo),
           label: Text(
             AppLocalizations.of(context)!.carte,
             style: TextStyle(color: Colors.black),
@@ -61,7 +61,7 @@ class _boutonsMenuState extends State<boutonsMenu> {
               MaterialPageRoute(builder: (context) => silhouette()),
             );
           },
-          icon: const Icon(Icons.account_box),
+          icon: const Icon(Icons.account_box, color: Colors.indigo),
           label: Text(
             AppLocalizations.of(context)!.silhouette,
             style: TextStyle(color: Colors.black),

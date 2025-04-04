@@ -37,12 +37,11 @@ class MainApp extends StatelessWidget {
         '/silhouette': (context) => silhouette(),
       },
       theme: ThemeData(
-        primarySwatch: Colors.green,
         appBarTheme: const AppBarTheme(
           backgroundColor:
               Colors.orange, //Permet de fixer la couleur de la barre d'application directement depuis le thème
         ),
-        scaffoldBackgroundColor: Colors.white,
+        scaffoldBackgroundColor: Color(0xFFFFF5E1),
       ),
       home: acceuil(), //Définit la page d'accueil de l'application
     );
