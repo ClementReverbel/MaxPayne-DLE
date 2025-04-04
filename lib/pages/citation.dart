@@ -58,6 +58,11 @@ class _citationState extends State<citation> {
 
   @override
   Widget build(BuildContext context) {
+    if (_citation == null) {
+      return Center(
+        child: CircularProgressIndicator(),
+      );
+    }
     return Scaffold(
         body: Center(
             child:

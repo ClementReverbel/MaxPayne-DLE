@@ -29,9 +29,10 @@ class _AutoCompleteCharacterState extends State<AutoCompleteCharacter> {
           return const Iterable<String>.empty();
         }
         return widget.characterOptions.where((String option) {
-          return option.contains(textEditingValue.text);
-        });
+          return option.toLowerCase().contains(textEditingValue.text.toLowerCase());
+        }).toList();
       },
+
       //Ici on renvoi au widget parent le changement d'état
       onSelected: (String selection) {
         widget.onCharacterSelected(selection);

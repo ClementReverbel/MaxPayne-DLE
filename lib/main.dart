@@ -40,10 +40,9 @@ class MainApp extends StatelessWidget {
         primarySwatch: Colors.green,
         appBarTheme: const AppBarTheme(
           backgroundColor:
-              Colors
-                  .redAccent, //Permet de fixer la couleur de la barre d'application directement depuis le thème
+              Colors.orange, //Permet de fixer la couleur de la barre d'application directement depuis le thème
         ),
-        scaffoldBackgroundColor: Colors.grey,
+        scaffoldBackgroundColor: Colors.white,
       ),
       home: acceuil(), //Définit la page d'accueil de l'application
     );

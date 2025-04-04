@@ -67,7 +67,13 @@ class _silhouetteState extends State<silhouette> {
 
   @override
   Widget build(BuildContext context) {
+    if (_silhouette == null) {
+      return Center(
+        child: CircularProgressIndicator(),
+      );
+    }
     return Scaffold(
+
       body: SingleChildScrollView(
         child: Column(
           children: [

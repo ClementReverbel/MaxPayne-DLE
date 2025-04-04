@@ -58,6 +58,12 @@ class _findMapState extends State<findMap> {
 
   @override
   Widget build(BuildContext context) {
+    if (_location == null) {
+      return Center(
+        child: CircularProgressIndicator(),
+      );
+    }
+
     return Scaffold(
       appBar: const boutonsMenu(),
       // Widget OrientationBuilder permet de construire un widget en fonction de l'orientation de l'écran.
