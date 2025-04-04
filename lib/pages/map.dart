@@ -59,6 +59,37 @@ class _findMapState extends State<findMap> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: const boutonsMenu(),
+      // Widget OrientationBuilder permet de construire un widget en fonction de l'orientation de l'écran.
+      body: OrientationBuilder(
+        builder: (context, orientation) { //builder est une fonction qui prend en paramètre le context et l'orientation.
+          if (orientation == Orientation.portrait) {
+            return _buildPortraitLayout();
+          } else {
+            return _buildLandscapeLayout();
+          }
+        },
+      ),
+    );
+  }
+
+
+
+  Widget _buildLandscapeLayout() {
+        return Row(
+              children: [
+                  //! permet de vérifier si location n'est pas null
+                  Image.asset(_location!.path),
+                  Expanded(
+                    child: _listRadio(),
+                  ),
+                  _boutonValider(),
+                ],
+              );
+  }
+
+  Widget _buildPortraitLayout() {
+    return Scaffold(
       body: Center(
         child: Column(
           children: [
@@ -74,112 +105,8 @@ class _findMapState extends State<findMap> {
             ),
             //! permet de vérifier si location n'est pas null
             Image.asset(_location!.path),
-            Column(
-              children: <Widget>[
-                SizedBox(
-                  height: 300,
-                  child: ListView(
-                    shrinkWrap: true,
-                    children: <Widget>[
-                      ListTile(
-                        title: const Text('55th Ballation HQ'),
-                        leading: Radio<String>(
-                          value: "55th Ballation HQ",
-                          groupValue: _location_choosen,
-                          onChanged: (String? value) {
-                            setState(() {
-                              _location_choosen = value!;
-                            });
-                          },
-                        ),
-                      ),
-                      ListTile(
-                        title: const Text('Canal de Panama'),
-                        leading: Radio<String>(
-                          value: "Canal de Panama",
-                          groupValue: _location_choosen,
-                          onChanged: (String? value) {
-                            setState(() {
-                              _location_choosen = value!;
-                            });
-                          },
-                        ),
-                      ),
-                      ListTile(
-                        title: const Text('Departure Lounge'),
-                        leading: Radio<String>(
-                          value: "Departure Lounge",
-                          groupValue: _location_choosen,
-                          onChanged: (String? value) {
-                            setState(() {
-                              _location_choosen = value!;
-                            });
-                          },
-                        ),
-                      ),
-                      ListTile(
-                        title: const Text('Favela Heights'),
-                        leading: Radio<String>(
-                          value: "Favela Heights",
-                          groupValue: _location_choosen,
-                          onChanged: (String? value) {
-                            setState(() {
-                              _location_choosen = value!;
-                            });
-                          },
-                        ),
-                      ),
-                      ListTile(
-                        title: const Text('Imperial palace'),
-                        leading: Radio<String>(
-                          value: "Imperial palace",
-                          groupValue: _location_choosen,
-                          onChanged: (String? value) {
-                            setState(() {
-                              _location_choosen = value!;
-                            });
-                          },
-                        ),
-                      ),
-                      ListTile(
-                        title: const Text('Roscoe street subway'),
-                        leading: Radio<String>(
-                          value: "Roscoe street subway",
-                          groupValue: _location_choosen,
-                          onChanged: (String? value) {
-                            setState(() {
-                              _location_choosen = value!;
-                            });
-                          },
-                        ),
-                      ),
-                      ListTile(
-                        title: const Text('Shoot first'),
-                        leading: Radio<String>(
-                          value: "Shoot first",
-                          groupValue: _location_choosen,
-                          onChanged: (String? value) {
-                            setState(() {
-                              _location_choosen = value!;
-                            });
-                          },
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-            ElevatedButton(
-              onPressed:
-                  () => {
-                    if (_location?.place == _location_choosen)
-                      {print("OUI")}
-                    else
-                      {print("NON")},
-                  },
-              child: Text("Valider"),
-            ),
+            _listRadio(),
+            _boutonValider(),
           ],
         ),
       ),
@@ -188,8 +115,119 @@ class _findMapState extends State<findMap> {
           _getRandomLocation();
         },
         child: Icon(Icons.refresh),
-      ),
-      appBar: const boutonsMenu(),
+      )
+    );
+  }
+
+  Widget _listRadio(){
+    return Column(
+      children: <Widget>[
+        SizedBox(
+          height: 300,
+          child: ListView(
+            shrinkWrap: true,
+            children: <Widget>[
+              ListTile(
+                title: const Text('55th Ballation HQ'),
+                leading: Radio<String>(
+                  value: "55th Ballation HQ",
+                  groupValue: _location_choosen,
+                  onChanged: (String? value) {
+                    setState(() {
+                      _location_choosen = value!;
+                    });
+                  },
+                ),
+              ),
+              ListTile(
+                title: const Text('Canal de Panama'),
+                leading: Radio<String>(
+                  value: "Canal de Panama",
+                  groupValue: _location_choosen,
+                  onChanged: (String? value) {
+                    setState(() {
+                      _location_choosen = value!;
+                    });
+                  },
+                ),
+              ),
+              ListTile(
+                title: const Text('Departure Lounge'),
+                leading: Radio<String>(
+                  value: "Departure Lounge",
+                  groupValue: _location_choosen,
+                  onChanged: (String? value) {
+                    setState(() {
+                      _location_choosen = value!;
+                    });
+                  },
+                ),
+              ),
+              ListTile(
+                title: const Text('Favela Heights'),
+                leading: Radio<String>(
+                  value: "Favela Heights",
+                  groupValue: _location_choosen,
+                  onChanged: (String? value) {
+                    setState(() {
+                      _location_choosen = value!;
+                    });
+                  },
+                ),
+              ),
+              ListTile(
+                title: const Text('Imperial palace'),
+                leading: Radio<String>(
+                  value: "Imperial palace",
+                  groupValue: _location_choosen,
+                  onChanged: (String? value) {
+                    setState(() {
+                      _location_choosen = value!;
+                    });
+                  },
+                ),
+              ),
+              ListTile(
+                title: const Text('Roscoe street subway'),
+                leading: Radio<String>(
+                  value: "Roscoe street subway",
+                  groupValue: _location_choosen,
+                  onChanged: (String? value) {
+                    setState(() {
+                      _location_choosen = value!;
+                    });
+                  },
+                ),
+              ),
+              ListTile(
+                title: const Text('Shoot first'),
+                leading: Radio<String>(
+                  value: "Shoot first",
+                  groupValue: _location_choosen,
+                  onChanged: (String? value) {
+                    setState(() {
+                      _location_choosen = value!;
+                    });
+                  },
+                ),
+              ),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+  Widget _boutonValider(){
+    return ElevatedButton(
+      onPressed:
+          () => {
+        if (_location?.place == _location_choosen)
+          {print("OUI")}
+        else
+          {print("NON")},
+      },
+      child: Text("Valider"),
     );
   }
 }
+
