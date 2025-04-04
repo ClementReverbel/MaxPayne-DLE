@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:maxpaynedle/elements/boutonsMenu.dart';
 
 import '../class_DB/quote.dart';
+import '../elements/AutoCompleteCharacter.dart';
 
 class citation extends StatefulWidget {
   const citation({super.key});
@@ -16,6 +17,15 @@ class citation extends StatefulWidget {
 class _citationState extends State<citation> {
   //Notre citation choisie aléatoirement
   Quote? _citation;
+  String _selectedCharacter="";
+  final List<String> characters = <String>[
+    'Vlad Lem',
+    'Jack Lupino',
+    'Max Payne',
+    'Mona Sax',
+    'Detective Winterson',
+    'Raul Passos',
+  ];
 
   //Exécute notre fonction de récupération de carte aléatoire à l'initialisation
   @override
@@ -53,7 +63,40 @@ class _citationState extends State<citation> {
             child:
                 Column(children: [
                   Text("Citation", style: TextStyle(fontSize: 40)),
-                  Text(_citation!.quote, textAlign: TextAlign.center, style: TextStyle(fontSize:20))],
+                  Text(_citation!.quote, textAlign: TextAlign.center, style: TextStyle(fontSize:20)),
+                  SizedBox(height: 20),
+                  AutoCompleteCharacter(
+                    onCharacterSelected: (String selected) {
+                      setState(() {
+                        _selectedCharacter = selected;
+                      });
+                    }, characterOptions: characters,
+                  ),
+                  SizedBox(height: 20),
+                  ElevatedButton(
+                    onPressed: () {
+                      String result = "";
+                      if (_selectedCharacter == _citation!.character) {
+                        result =
+                            "Vous avez gagné ! Le personnage était bien " +
+                                _selectedCharacter;
+                      } else {
+                        result = "Ce n'est pas le bon personnage. Réessayez !";
+                      }
+                      final snackBar = SnackBar(
+                        content: Text(result),
+                        action: SnackBarAction(
+                          label: 'Retirer',
+                          onPressed: () {
+                            // Some code to undo the change.
+                          },
+                        ),
+                      );
+                      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                    },
+                    child: Text("Valider"),
+                  ),
+                ],
                 ),
         ),
         floatingActionButton: FloatingActionButton(
