@@ -62,7 +62,8 @@ class _findMapState extends State<findMap> {
       appBar: const boutonsMenu(),
       // Widget OrientationBuilder permet de construire un widget en fonction de l'orientation de l'écran.
       body: OrientationBuilder(
-        builder: (context, orientation) { //builder est une fonction qui prend en paramètre le context et l'orientation.
+        builder: (context, orientation) {
+          //builder est une fonction qui prend en paramètre le context et l'orientation.
           if (orientation == Orientation.portrait) {
             return _buildPortraitLayout();
           } else {
@@ -73,19 +74,15 @@ class _findMapState extends State<findMap> {
     );
   }
 
-
-
   Widget _buildLandscapeLayout() {
-        return Row(
-              children: [
-                  //! permet de vérifier si location n'est pas null
-                  Image.asset(_location!.path),
-                  Expanded(
-                    child: _listRadio(),
-                  ),
-                  _boutonValider(),
-                ],
-              );
+    return Row(
+      children: [
+        //! permet de vérifier si location n'est pas null
+        Image.asset(_location!.path),
+        Expanded(child: _listRadio()),
+        _boutonValider(),
+      ],
+    );
   }
 
   Widget _buildPortraitLayout() {
@@ -98,9 +95,13 @@ class _findMapState extends State<findMap> {
               children: [
                 Expanded(
                   flex: 2,
-                  child: Text("Map", style: TextStyle(fontSize: 40), textAlign: TextAlign.center),
+                  child: Text(
+                    "Map",
+                    style: TextStyle(fontSize: 40),
+                    textAlign: TextAlign.center,
+                  ),
                 ),
-                IconButton(onPressed: () =>{}, icon: Icon(Icons.info))
+                IconButton(onPressed: () => {}, icon: Icon(Icons.info)),
               ],
             ),
             //! permet de vérifier si location n'est pas null
@@ -115,11 +116,11 @@ class _findMapState extends State<findMap> {
           _getRandomLocation();
         },
         child: Icon(Icons.refresh),
-      )
+      ),
     );
   }
 
-  Widget _listRadio(){
+  Widget _listRadio() {
     return Column(
       children: <Widget>[
         SizedBox(
@@ -217,17 +218,28 @@ class _findMapState extends State<findMap> {
       ],
     );
   }
-  Widget _boutonValider(){
+
+  Widget _boutonValider() {
     return ElevatedButton(
-      onPressed:
-          () => {
-        if (_location?.place == _location_choosen)
-          {print("OUI")}
-        else
-          {print("NON")},
+      onPressed: () {
+        String result = "";
+        if (_location?.place == _location_choosen) {
+          result = "Vous avez gagné ! la carte était bien " + _location_choosen;
+        } else {
+          result = "Ce n'est pas la bonne carte. Réessayez !";
+        }
+        final snackBar = SnackBar(
+          content: Text(result),
+          action: SnackBarAction(
+            label: "Retirer",
+            onPressed: () {
+              // Some code to undo the change.
+            },
+          ),
+        );
+        ScaffoldMessenger.of(context).showSnackBar(snackBar);
       },
       child: Text("Valider"),
     );
   }
 }
-
