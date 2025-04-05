@@ -76,8 +76,8 @@ class _boutonsMenuState extends State<boutonsMenu> {
                   color: Colors.orange,
                 ),
                 children: [
-                  const Text(
-                    "Une app hommage à Max Payne, mêlant citations, silhouettes et exploration. Développée avec Flutter dans le cadre d'un projet universitaire. Réalisé par Zyad REYNIER et Clément REVERBEL.",
+                  Text(
+                    AppLocalizations.of(context)!.aproposdesc,
                   ),
                 ],
               );
@@ -85,9 +85,9 @@ class _boutonsMenuState extends State<boutonsMenu> {
           },
           itemBuilder:
               (BuildContext context) => <PopupMenuEntry<burger>>[
-                const PopupMenuItem<burger>(
+                PopupMenuItem<burger>(
                   value: burger.apropos,
-                  child: Text("À propos"),
+                  child: Text(AppLocalizations.of(context)!.apropos),
                 ),
               ],
         ),

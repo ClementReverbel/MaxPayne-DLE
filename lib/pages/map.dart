@@ -10,6 +10,7 @@ import 'package:provider/provider.dart';
 
 import '../elements/ScoreProvider.dart';
 import '../elements/boutonsMenu.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 List<String?> _allLoc = [
   "ballation",
@@ -71,7 +72,7 @@ class _findMapState extends State<findMap> {
     }
 
     return Scaffold(
-      appBar: boutonsMenu(),
+      appBar: const boutonsMenu(),
       // Widget OrientationBuilder permet de construire un widget en fonction de l'orientation de l'écran.
       body: OrientationBuilder(
         builder: (context, orientation) {
@@ -90,8 +91,8 @@ class _findMapState extends State<findMap> {
     return Row(
       children: [
         //! permet de vérifier si location n'est pas null
-        Expanded(flex: 5, child: Image.asset(_location!.path)),
-        Expanded(flex: 3, child: _listRadio()),
+        Image.asset(_location!.path),
+        Expanded(child: _listRadio()),
         _boutonValider(),
       ],
     );
@@ -238,8 +239,6 @@ class _findMapState extends State<findMap> {
         if (_location?.place == _location_choosen) {
           _getRandomLocation();
           result = "Vous avez gagné ! la carte était bien " + _location_choosen;
-          context.read<ScoreProvider>().augmenterScore();
-          _getRandomLocation();
         } else {
           result = "Ce n'est pas la bonne carte. Réessayez !";
         }
@@ -248,6 +247,7 @@ class _findMapState extends State<findMap> {
           action: SnackBarAction(
             label: "Retirer",
             onPressed: () {
+              // Some code to undo the change.
             },
           ),
         );

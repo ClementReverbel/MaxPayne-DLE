@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:maxpaynedle/elements/boutonsMenu.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../class_DB/quote.dart';
 import '../elements/AutoCompleteCharacter.dart';
@@ -67,7 +68,7 @@ class _citationState extends State<citation> {
         body: Center(
             child:
                 Column(children: [
-                  Text("Citation", style: TextStyle(fontSize: 40)),
+                  Text(AppLocalizations.of(context)!.citation, style: TextStyle(fontSize: 40)),
                   Text(_citation!.quote, textAlign: TextAlign.center, style: TextStyle(fontSize:20)),
                   SizedBox(height: 20),
                   AutoCompleteCharacter(
@@ -83,16 +84,14 @@ class _citationState extends State<citation> {
                       String result = "";
                       if (_selectedCharacter == _citation!.character) {
                         _getRandomCitation();
-                        result =
-                            "Vous avez gagné ! Le personnage était bien " +
-                                _selectedCharacter;
+                        result =AppLocalizations.of(context)!.gagne(_selectedCharacter);
                       } else {
-                        result = "Ce n'est pas le bon personnage. Réessayez !";
+                        result = AppLocalizations.of(context)!.perdu;
                       }
                       final snackBar = SnackBar(
                         content: Text(result),
                         action: SnackBarAction(
-                          label: 'Retirer',
+                          label: AppLocalizations.of(context)!.retirer,
                           onPressed: () {
                             // Some code to undo the change.
                           },
@@ -100,7 +99,7 @@ class _citationState extends State<citation> {
                       );
                       ScaffoldMessenger.of(context).showSnackBar(snackBar);
                     },
-                    child: Text("Valider"),
+                    child: Text(AppLocalizations.of(context)!.valider),
                   ),
                 ],
                 ),

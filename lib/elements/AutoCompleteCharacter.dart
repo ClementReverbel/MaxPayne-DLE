@@ -2,6 +2,7 @@
 //Il est crée dans une autre classe pour rentre le code propre et réfactorisé
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class AutoCompleteCharacter extends StatefulWidget {
   final Function(String) onCharacterSelected;
@@ -46,7 +47,7 @@ class _AutoCompleteCharacterState extends State<AutoCompleteCharacter> {
             onEditingComplete: onEditingComplete,
             style: const TextStyle(fontSize: 16),
             decoration: InputDecoration(
-              hintText: 'Entrez un personnage',
+              hintText: AppLocalizations.of(context)!.placeholder_auto,
               contentPadding: const EdgeInsets.symmetric(
                 horizontal: 12,
                 vertical: 10,

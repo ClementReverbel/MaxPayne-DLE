@@ -1,22 +1,91 @@
 {
   "titre_accueil": "Accueil",
-  "@Accueil" :{
-  "description":"Titre de la page d'accueil"
+  "@titre_accueil": {
+    "description": "Titre de la page d'accueil"
   },
-  "infos_accueil" : "Des informations",
-  "@Infos" :{
-    "description":"Informations générale sur le jeu Max Payne"
-    },
+
+  "infos_accueil": "Quelques infos",
+  "@infos_accueil": {
+    "description": "Informations générales sur le jeu Max Payne"
+  },
+
   "citation": "Citation",
-  "@citation" :{
-    "description":"General informations about the game Max Payne"
+  "@citation": {
+    "description": "Lien vers la page de citations"
   },
-  "carte" : "Carte",
-  "@carte" :{
-    "description":"General informations about the game Max Payne"
+
+  "carte": "Carte",
+  "@carte": {
+    "description": "Lien vers la carte du jeu"
   },
-  "silhouette" : "Silhouette",
-  "@silhouette" :{
-    "description":"General informations about the game Max Payne"
-  }
+
+  "silhouette": "Silhouette",
+  "@silhouette": {
+    "description": "Lien vers la page silhouette"
+  },
+
+  "mode_jeu": "Mode de jeu : {mode}",
+  "@mode_jeu": {
+    "description": "Texte du mode de jeu avec silhouette ou sans",
+    "placeholders": {
+      "mode": {
+        "type": "Object"
+      }
+    }
+  },
+
+  "gagne": "Vous avez gagné ! Le personnage était bien {name}",
+  "@gagne": {
+    "description": "Message affiché quand l'utilisateur a deviné correctement",
+    "placeholders": {
+      "name": {
+        "type": "Object"
+      }
+    }
+  },
+
+  "perdu": "Ce n'est pas le bon personnage. Réessayez !",
+  "@perdu": {
+    "description": "Message affiché quand la réponse est fausse"
+  },
+
+  "retirer": "Retirer",
+  "@retirer": {
+    "description": "Texte du bouton pour retirer une action"
+  },
+
+  "valider": "Valider",
+  "@valider": {
+    "description": "Texte du bouton de validation"
+  },
+
+  "silhouette_mode_on": "Silhouette",
+  "silhouette_mode_off": "Sans silhouette",
+
+  "gagne_map": "Vous avez gagné ! La carte était bien {name}",
+    "@gagne_map": {
+      "description": "Message affiché quand l'utilisateur a deviné correctement",
+      "placeholders": {
+        "name": {
+          "type": "Object"
+        }
+      }
+    },
+
+    "perdu_map": "Ce n'est pas la bonne carte. Réessayez !",
+    "@perdu_map": {
+      "description": "Message affiché quand la réponse est fausse"
+    },
+
+    "placeholder_auto":"Entrez un personnage",
+    "@placeholder_auto":{
+        "description": "Placeholder des champs de saise de l'app"
+    },
+
+    "bienvenue":"Bienvenue sur MaxPayneDLE",
+    "presentation":"Une expérience immersive autour de l’univers de Max Payne. Explorez les citations marquantes, localisez les lieux, et identifiez les silhouettes emblématiques.",
+    "score":"Votre score : {score}",
+
+    "apropos":"A propos",
+    "aproposdesc":"Une app hommage à Max Payne, mêlant citations, silhouettes et exploration. Développée avec Flutter dans le cadre d'un projet universitaire. Réalisé par Zyad REYNIER et Clément REVERBEL."
 }

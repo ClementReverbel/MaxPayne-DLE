@@ -44,7 +44,7 @@ class _acceuilState extends State<acceuil> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'Bienvenue sur MaxPayneDLE',
+              AppLocalizations.of(context)!.bienvenue,
                 style: Theme.of(context).textTheme.headlineLarge?.copyWith(
                   fontWeight: FontWeight.bold,
                   color: Theme.of(context).colorScheme.primary,
@@ -52,9 +52,7 @@ class _acceuilState extends State<acceuil> {
               ),
               const SizedBox(height: 16),
               Text(
-                'Une expérience immersive autour de l’univers de Max Payne. '
-                'Explorez les citations marquantes, localisez les lieux, '
-                'et identifiez les silhouettes emblématiques.',
+                AppLocalizations.of(context)!.presentation,
               ),
               const SizedBox(height: 32),
               Wrap(
@@ -63,17 +61,17 @@ class _acceuilState extends State<acceuil> {
                 children: [
                   ElevatedButton.icon(
                     icon: const Icon(Icons.assistant),
-                    label: const Text('Citations'),
+                    label: Text(AppLocalizations.of(context)!.citation),
                     onPressed: () => Navigator.pushNamed(context, '/citation'),
                   ),
                   ElevatedButton.icon(
                     icon: const Icon(Icons.map),
-                    label: const Text('Carte'),
+                    label: Text(AppLocalizations.of(context)!.carte,),
                     onPressed: () => Navigator.pushNamed(context, '/map'),
                   ),
                   ElevatedButton.icon(
                     icon: const Icon(Icons.account_box),
-                    label: const Text('Silhouettes'),
+                    label: Text(AppLocalizations.of(context)!.silhouette,),
                     onPressed:
                         () => Navigator.pushNamed(context, '/silhouette'),
                   ),
@@ -82,7 +80,7 @@ class _acceuilState extends State<acceuil> {
               const SizedBox(height: 40),
               Center(child:  Consumer<ScoreProvider>(
                 builder: (context,provider,child) {
-                  return Text("Votre Score : ${provider.score}", style: TextStyle(fontSize: 25),);
+                  return Text(AppLocalizations.of(context)!.score(provider.score), style: TextStyle(fontSize: 25),);
                 },
               ))
             ],

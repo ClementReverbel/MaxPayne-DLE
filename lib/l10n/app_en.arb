@@ -1,22 +1,91 @@
 {
   "titre_accueil": "Home",
-  "@Accueil" :{
-    "description":"Title of the home page"
-    },
-  "infos_accueil" : "Some infos",
-  "@Infos" :{
-    "description":"General informations about the game Max Payne"
-    },
+  "@titre_accueil": {
+    "description": "Title of the home page"
+  },
+
+  "infos_accueil": "Some infos",
+  "@infos_accueil": {
+    "description": "General information about the game Max Payne"
+  },
+
   "citation": "Quote",
-  "@citation" :{
-    "description":"General informations about the game Max Payne"
+  "@citation": {
+    "description": "Link to the quote page"
   },
-  "carte" : "Map",
-  "@carte" :{
-    "description":"General informations about the game Max Payne"
+
+  "carte": "Map",
+  "@carte": {
+    "description": "Link to the game map"
   },
-  "silhouette" : "Silhouette",
-  "@silhouette" :{
-    "description":"General informations about the game Max Payne"
-  }
+
+  "silhouette": "Silhouette",
+  "@silhouette": {
+    "description": "Link to the silhouette page"
+  },
+
+  "mode_jeu": "Game mode: {mode}",
+  "@mode_jeu": {
+    "description": "Game mode label depending on whether the silhouette is shown",
+    "placeholders": {
+      "mode": {
+          "type": "Object"
+        }
+    }
+  },
+
+  "gagne": "You won! The character was {name}",
+  "@gagne": {
+    "description": "Message displayed when the user guessed correctly",
+    "placeholders": {
+      "name": {
+          "type": "Object"
+        }
+    }
+  },
+
+  "perdu": "That's not the right character. Try again!",
+  "@perdu": {
+    "description": "Message when the answer is incorrect"
+  },
+
+  "retirer": "Undo",
+  "@retirer": {
+    "description": "Text of the button to cancel an action"
+  },
+
+  "valider": "Validate",
+  "@valider": {
+    "description": "Text for the validation button"
+  },
+
+  "silhouette_mode_on": "Silhouette",
+  "silhouette_mode_off": "Without silhouette",
+
+  "gagne_map": "You won! The map was {name}",
+    "@gagne_map": {
+      "description": "Message displayed when the user guessed correctly",
+      "placeholders": {
+        "name": {
+            "type": "Object"
+          }
+      }
+    },
+
+    "perdu_map": "That's not the right map. Try again!",
+    "@perdu_map": {
+      "description": "Message when the answer is incorrect"
+    }
+    ,
+    "placeholder_auto":"Enter a character",
+        "@placeholder_auto":{
+            "description": "Textfield placeholder of the app"
+        },
+
+    "bienvenue":"Welcome to MaxPayneDLE",
+    "presentation":"An immersive experience in the world of Max Payne. Explore iconic quotes, locate memorable places, and identify legendary silhouettes.",
+    "score":"Your score : {score}",
+
+    "apropos":"About",
+    "aproposdesc":"An app paying tribute to Max Payne, blending quotes, silhouettes, and exploration. Developed with Flutter as part of a university project. Created by Zyad REYNIER and Clément REVERBEL."
 }

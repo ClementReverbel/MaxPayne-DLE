@@ -1,10 +1,9 @@
 import 'dart:math';
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:maxpaynedle/elements/boutonsMenu.dart';
 import 'package:maxpaynedle/main.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../class_DB/shape.dart';
 import '../elements/AutoCompleteCharacter.dart';
@@ -63,9 +62,9 @@ class _silhouetteState extends State<silhouette> {
     });
   }
 
-  //Permet de connaitre le mode de jeu suivant et de l'afficher dans un texte
-  String gamemode() {
-    return _shape_mode ? "Sans silhouette " : "Silhouette";
+  String gamemodeText(BuildContext context) {
+    return _shape_mode ? AppLocalizations.of(context)!.mode_jeu(AppLocalizations.of(context)!.silhouette_mode_on) :
+    AppLocalizations.of(context)!.mode_jeu(AppLocalizations.of(context)!.silhouette_mode_off);
   }
 
   @override
@@ -76,19 +75,18 @@ class _silhouetteState extends State<silhouette> {
       );
     }
     return Scaffold(
-
+      appBar: const boutonsMenu(),
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Text("Silhouette", style: TextStyle(fontSize: 40)),
-            //! permet de vérifier si silhouette n'est pas null
+            Text(AppLocalizations.of(context)!.silhouette, style: const TextStyle(fontSize: 40)),
             _shape_mode
                 ?
                 //Affiche l'image en fonction du mode de jeu
                 Image.asset(_silhouette!.path_shape)
                 : Image.asset(_silhouette!.path_full_image),
-            SizedBox(height: 20),
-            Text("Mode de jeu : " + gamemode()),
+            const SizedBox(height: 20),
+            Text(gamemodeText(context)),
             Switch(
               value: _shape_mode,
               onChanged:
@@ -111,25 +109,23 @@ class _silhouetteState extends State<silhouette> {
                 String result = "";
                 if (_selectedCharacter == _silhouette!.character) {
                   _getRandomSilhouette();
-                  result =
-                      "Vous avez gagné ! Le personnage était bien " +
-                      _selectedCharacter;
                   context.read<ScoreProvider>().augmenterScore();
+                  result = AppLocalizations.of(context)!.gagne(_selectedCharacter);
                 } else {
                   result = "Ce n'est pas le bon personnage. Réessayez !";
                 }
                 final snackBar = SnackBar(
                   content: Text(result),
                   action: SnackBarAction(
-                    label: 'Retirer',
+                    label: AppLocalizations.of(context)!.retirer,
                     onPressed: () {
-                      // Some code to undo the change.
+                      // Action d'annulation (facultative)
                     },
                   ),
                 );
                 ScaffoldMessenger.of(context).showSnackBar(snackBar);
               },
-              child: Text("Valider"),
+              child: Text(AppLocalizations.of(context)!.valider),
             ),
             SizedBox(height: 10),
           ],
@@ -142,7 +138,6 @@ class _silhouetteState extends State<silhouette> {
         },
         child: Icon(Icons.refresh),
       ),
-      appBar: boutonsMenu(),
     );
   }
 }
