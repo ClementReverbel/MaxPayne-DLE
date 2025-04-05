@@ -37,17 +37,33 @@ class MainApp extends StatelessWidget {
         '/silhouette': (context) => silhouette(),
       },
       theme: ThemeData(
-        appBarTheme: const AppBarTheme(backgroundColor: Colors.orange),
-        scaffoldBackgroundColor: const Color(0xFFFFF5E1),
         brightness: Brightness.light,
-        textTheme: const TextTheme(bodyMedium: TextStyle(color: Colors.black)),
+        scaffoldBackgroundColor: const Color(0xFFFFF5E1),
+        appBarTheme: const AppBarTheme(backgroundColor: Colors.orange),
+        textTheme: const TextTheme(
+          bodyMedium: TextStyle(color: Colors.black),
+        ),
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: Colors.orange,
+          brightness: Brightness.light,
+        ),
+        useMaterial3: true,
       ),
+
       darkTheme: ThemeData(
         brightness: Brightness.dark,
-        scaffoldBackgroundColor: Colors.black,
+        scaffoldBackgroundColor: const Color(0xFF121212),
         appBarTheme: const AppBarTheme(backgroundColor: Colors.redAccent),
-        textTheme: const TextTheme(bodyMedium: TextStyle(color: Colors.white)),
+        textTheme: const TextTheme(
+          bodyMedium: TextStyle(color: Colors.white),
+        ),
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: Colors.redAccent,
+          brightness: Brightness.dark,
+        ),
+        useMaterial3: true,
       ),
+
       home: acceuil(), //Définit la page d'accueil de l'application
     );
   }
