@@ -20,7 +20,6 @@ class boutonsMenu extends StatefulWidget implements PreferredSizeWidget {
 }
 
 class _boutonsMenuState extends State<boutonsMenu> {
-  bool _switchon = false;
 
   @override
   Widget build(BuildContext context) {
@@ -74,17 +73,6 @@ class _boutonsMenuState extends State<boutonsMenu> {
                 const PopupMenuItem<burger>(
                   value: burger.apropos,
                   child: Text("A propos"),
-                ),
-                PopupMenuItem<burger>(
-                  value: burger.theme,
-                  child: Switch(
-                    value: _switchon,
-                    onChanged: (bool value) {
-                      setState(() {
-                        _switchon = value;
-                      });
-                    },
-                  ),
                 ),
               ],
         ),

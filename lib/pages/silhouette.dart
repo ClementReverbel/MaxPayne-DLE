@@ -126,6 +126,7 @@ class _silhouetteState extends State<silhouette> {
               },
               child: Text("Valider"),
             ),
+            SizedBox(height: 10),
           ],
         ),
       ),
