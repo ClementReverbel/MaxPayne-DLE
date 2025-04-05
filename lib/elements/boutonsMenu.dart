@@ -63,12 +63,32 @@ class _boutonsMenuState extends State<boutonsMenu> {
           ),
         ),
         PopupMenuButton(
-          itemBuilder: (BuildContext context) => <PopupMenuEntry<burger>>[
-            const PopupMenuItem<burger>(
-              value: burger.apropos,
-              child: Text("À propos"),
-            ),
-          ],
+          onSelected: (burger item) {
+            if (item == burger.apropos) {
+              showAboutDialog(
+                context: context,
+                applicationName: 'MaxPayneDLE',
+                applicationVersion: '1.0.0',
+                applicationIcon: Icon(
+                  Icons.gamepad,
+                  size: 40,
+                  color: Colors.orange,
+                ),
+                children: [
+                  const Text(
+                    "Une app hommage à Max Payne, mêlant citations, silhouettes et exploration. Développée avec Flutter dans le cadre d'un projet universitaire. Réalisé par Zyad REYNIER et Clément REVERBEL.",
+                  ),
+                ],
+              );
+            }
+          },
+          itemBuilder:
+              (BuildContext context) => <PopupMenuEntry<burger>>[
+                const PopupMenuItem<burger>(
+                  value: burger.apropos,
+                  child: Text("À propos"),
+                ),
+              ],
         ),
       ],
     );
