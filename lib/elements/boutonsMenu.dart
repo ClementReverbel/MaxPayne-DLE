@@ -20,61 +20,55 @@ class boutonsMenu extends StatefulWidget implements PreferredSizeWidget {
 }
 
 class _boutonsMenuState extends State<boutonsMenu> {
-
   @override
   Widget build(BuildContext context) {
+    final currentRoute = ModalRoute.of(context)?.settings.name;
+
     return AppBar(
       actions: <Widget>[
         TextButton.icon(
           onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => citation()),
-            );
+            if (currentRoute != '/citation') {
+              Navigator.pushNamed(context, '/citation');
+            }
           },
           icon: const Icon(Icons.assistant, color: Colors.indigo),
           label: Text(
             AppLocalizations.of(context)!.citation,
             style: const TextStyle(color: Colors.black),
           ),
-          iconAlignment: IconAlignment.start,
         ),
         TextButton.icon(
           onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => findMap()),
-            );
+            if (currentRoute != '/map') {
+              Navigator.pushNamed(context, '/map');
+            }
           },
           icon: const Icon(Icons.map, color: Colors.indigo),
           label: Text(
             AppLocalizations.of(context)!.carte,
-            style: TextStyle(color: Colors.black),
+            style: const TextStyle(color: Colors.black),
           ),
-          iconAlignment: IconAlignment.start,
         ),
         TextButton.icon(
           onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => silhouette()),
-            );
+            if (currentRoute != '/silhouette') {
+              Navigator.pushNamed(context, '/silhouette');
+            }
           },
           icon: const Icon(Icons.account_box, color: Colors.indigo),
           label: Text(
             AppLocalizations.of(context)!.silhouette,
-            style: TextStyle(color: Colors.black),
+            style: const TextStyle(color: Colors.black),
           ),
-          iconAlignment: IconAlignment.start,
         ),
         PopupMenuButton(
-          itemBuilder:
-              (BuildContext context) => <PopupMenuEntry<burger>>[
-                const PopupMenuItem<burger>(
-                  value: burger.apropos,
-                  child: Text("A propos"),
-                ),
-              ],
+          itemBuilder: (BuildContext context) => <PopupMenuEntry<burger>>[
+            const PopupMenuItem<burger>(
+              value: burger.apropos,
+              child: Text("À propos"),
+            ),
+          ],
         ),
       ],
     );
