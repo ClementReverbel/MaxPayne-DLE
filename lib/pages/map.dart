@@ -102,7 +102,7 @@ class _findMapState extends State<findMap> {
         child: Column(
           children: [
             Text(
-              "Map",
+              AppLocalizations.of(context)!.carte,
               style: TextStyle(fontSize: 40),
               textAlign: TextAlign.center,
             ),
@@ -227,14 +227,14 @@ class _findMapState extends State<findMap> {
         String result = "";
         if (_location?.place == _location_choosen) {
           _getRandomLocation();
-          result = "Vous avez gagné ! la carte était bien " + _location_choosen;
+          result = AppLocalizations.of(context)!.gagne_map(_location_choosen);
         } else {
-          result = "Ce n'est pas la bonne carte. Réessayez !";
+          result = AppLocalizations.of(context)!.perdu_map;
         }
         final snackBar = SnackBar(
           content: Text(result),
           action: SnackBarAction(
-            label: "Retirer",
+            label: AppLocalizations.of(context)!.retirer,
             onPressed: () {
               // Some code to undo the change.
             },
@@ -242,7 +242,7 @@ class _findMapState extends State<findMap> {
         );
         ScaffoldMessenger.of(context).showSnackBar(snackBar);
       },
-      child: Text("Valider"),
+      child: Text(AppLocalizations.of(context)!.valider),
     );
   }
 }
