@@ -230,6 +230,7 @@ class _findMapState extends State<findMap> {
       onPressed: () {
         String result = "";
         if (_location?.place == _location_choosen) {
+          _getRandomLocation();
           result = "Vous avez gagné ! la carte était bien " + _location_choosen;
         } else {
           result = "Ce n'est pas la bonne carte. Réessayez !";

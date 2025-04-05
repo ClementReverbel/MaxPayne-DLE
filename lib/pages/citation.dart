@@ -82,6 +82,7 @@ class _citationState extends State<citation> {
                     onPressed: () {
                       String result = "";
                       if (_selectedCharacter == _citation!.character) {
+                        _getRandomCitation();
                         result =
                             "Vous avez gagné ! Le personnage était bien " +
                                 _selectedCharacter;

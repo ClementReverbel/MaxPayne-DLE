@@ -107,6 +107,7 @@ class _silhouetteState extends State<silhouette> {
               onPressed: () {
                 String result = "";
                 if (_selectedCharacter == _silhouette!.character) {
+                  _getRandomSilhouette();
                   result =
                       "Vous avez gagné ! Le personnage était bien " +
                       _selectedCharacter;
