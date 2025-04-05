@@ -66,9 +66,7 @@ class _findMapState extends State<findMap> {
   @override
   Widget build(BuildContext context) {
     if (_location == null) {
-      return Center(
-        child: CircularProgressIndicator(),
-      );
+      return Center(child: CircularProgressIndicator());
     }
 
     return Scaffold(
@@ -103,19 +101,10 @@ class _findMapState extends State<findMap> {
       body: Center(
         child: Column(
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Expanded(
-                  flex: 2,
-                  child: Text(
-                    "Map",
-                    style: TextStyle(fontSize: 40),
-                    textAlign: TextAlign.center,
-                  ),
-                ),
-                IconButton(onPressed: () => {}, icon: Icon(Icons.info)),
-              ],
+            Text(
+              "Map",
+              style: TextStyle(fontSize: 40),
+              textAlign: TextAlign.center,
             ),
             //! permet de vérifier si location n'est pas null
             Image.asset(_location!.path),
