@@ -5,9 +5,17 @@ import 'package:maxpaynedle/pages/map.dart';
 import 'package:maxpaynedle/pages/silhouette.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:provider/provider.dart';
+
+import 'elements/ScoreProvider.dart';
 
 void main() {
-  runApp(const MainApp());
+  runApp(
+    ChangeNotifierProvider(
+      create: (context) => ScoreProvider(),
+      child: MainApp(),
+    ),
+  );
 }
 
 final RouteObserver<PageRoute> routeObserver = RouteObserver<PageRoute>();

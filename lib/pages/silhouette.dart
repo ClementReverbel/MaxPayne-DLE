@@ -3,9 +3,12 @@ import 'dart:math';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:maxpaynedle/elements/boutonsMenu.dart';
+import 'package:maxpaynedle/main.dart';
+import 'package:provider/provider.dart';
 
 import '../class_DB/shape.dart';
 import '../elements/AutoCompleteCharacter.dart';
+import '../elements/ScoreProvider.dart';
 
 class silhouette extends StatefulWidget {
   const silhouette({super.key});
@@ -62,7 +65,7 @@ class _silhouetteState extends State<silhouette> {
 
   //Permet de connaitre le mode de jeu suivant et de l'afficher dans un texte
   String gamemode() {
-    return _shape_mode ? "Sans silhouette" : "Silhouette";
+    return _shape_mode ? "Sans silhouette " : "Silhouette";
   }
 
   @override
@@ -111,6 +114,7 @@ class _silhouetteState extends State<silhouette> {
                   result =
                       "Vous avez gagné ! Le personnage était bien " +
                       _selectedCharacter;
+                  context.read<ScoreProvider>().augmenterScore();
                 } else {
                   result = "Ce n'est pas le bon personnage. Réessayez !";
                 }
@@ -138,7 +142,7 @@ class _silhouetteState extends State<silhouette> {
         },
         child: Icon(Icons.refresh),
       ),
-      appBar: const boutonsMenu(),
+      appBar: boutonsMenu(),
     );
   }
 }

@@ -17,6 +17,7 @@ class boutonsMenu extends StatefulWidget implements PreferredSizeWidget {
 
   @override
   Size get preferredSize => const Size.fromHeight(kToolbarHeight);
+
 }
 
 class _boutonsMenuState extends State<boutonsMenu> {
@@ -35,7 +36,7 @@ class _boutonsMenuState extends State<boutonsMenu> {
           icon: const Icon(Icons.assistant, color: Colors.indigo),
           label: Text(
             AppLocalizations.of(context)!.citation,
-            style: const TextStyle(color: Colors.black),
+            style: TextStyle(color: Colors.black),
           ),
         ),
         TextButton.icon(

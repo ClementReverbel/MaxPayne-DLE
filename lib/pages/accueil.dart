@@ -1,12 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:maxpaynedle/elements/boutonsMenu.dart';
-import 'package:maxpaynedle/pages/citation.dart';
-import 'package:maxpaynedle/pages/map.dart';
+import 'package:maxpaynedle/main.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:maxpaynedle/pages/map.dart';
+import 'package:provider/provider.dart';
 import 'package:sqflite/sqflite.dart';
 
 import '../class_DB/DB.dart';
+import '../elements/ScoreProvider.dart';
 
 class acceuil extends StatefulWidget {
   const acceuil({super.key});
@@ -27,7 +29,7 @@ class _acceuilState extends State<acceuil> {
   Future<void> _initDB() async {
     await getDatabasesPath().then((value) => debugPrint(value));
     await db.initDatabase();
-    setState(() {}); // Trigger rebuild after DB is initialized
+    setState(() {});
   }
 
   @override
@@ -77,6 +79,12 @@ class _acceuilState extends State<acceuil> {
                   ),
                 ],
               ),
+              const SizedBox(height: 40),
+              Center(child:  Consumer<ScoreProvider>(
+                builder: (context,provider,child) {
+                  return Text("Votre Score : ${provider.score}", style: TextStyle(fontSize: 25),);
+                },
+              ))
             ],
           ),
         ),
